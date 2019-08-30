@@ -14,7 +14,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 
 import com.sara.gnamm.R;
-import com.sara.gnamm.helper.DateHelper;
+import com.sara.gnamm.extensions.DateHelper;
 import com.sara.gnamm.helper.UserHelperKt;
 import com.sara.gnamm.models.User;
 

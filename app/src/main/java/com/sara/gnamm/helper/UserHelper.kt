@@ -1,5 +1,7 @@
 package com.sara.gnamm.helper
 
+import com.sara.gnamm.extensions.DefaultDateFormat
+import com.sara.gnamm.extensions.yearsBetween
 import com.sara.gnamm.models.Credentials
 import com.sara.gnamm.models.Sex
 import com.sara.gnamm.models.User
@@ -8,7 +10,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 fun isOver18(user: User): Boolean {
-    return yearsBetween(user.birthDate) >= 18
+    return user.birthDate.yearsBetween() >= 18
 }
 
 fun randomUser(): User {
