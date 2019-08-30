@@ -36,15 +36,17 @@ fun listOfRandomUser(): List<User> {
 
 
 fun randomBirthDate(): Date {
-    val randomYear = try {
+    val simpleDateFormat = SimpleDateFormat(DefaultDateFormat, Locale.getDefault())
+
+    try {
         val limit = 1970
-        Random().nextInt(2019 - limit) + limit
+        val randomYear = Random().nextInt(2019 - limit) + limit
+        return simpleDateFormat.parse("01/01/$randomYear") ?: Date()
     } catch (e: ParseException) {
-        1900
+       return simpleDateFormat.parse("15/07/1997") ?: Date()
     }
 
-    val simpleDateFormat = SimpleDateFormat(DefaultDateFormat, Locale.getDefault())
-    return simpleDateFormat.parse("01-01-$randomYear") ?: Date()
+
 
 }
 
