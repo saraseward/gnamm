@@ -10,10 +10,18 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.sara.gnamm.fragment.DetailFragment;
+import com.sara.gnamm.fragment.LoginFragment;
+import com.sara.gnamm.fragment.MainFragment;
+import com.sara.gnamm.fragment.RegisterFragment;
 import com.sara.gnamm.fragment.SplashFragment;
 
 public class MainActivity extends AppCompatActivity implements
-        SplashFragment.OnFragmentInteractionListener {
+        SplashFragment.OnFragmentInteractionListener,
+        LoginFragment.OnFragmentInteractionListener,
+        RegisterFragment.OnFragmentInteractionListener,
+        MainFragment.OnFragmentInteractionListener,
+        DetailFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
