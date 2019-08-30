@@ -1,5 +1,6 @@
 package com.sara.gnamm;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,7 +10,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-public class MainActivity extends AppCompatActivity {
+import com.sara.gnamm.fragment.SplashFragment;
+
+public class MainActivity extends AppCompatActivity implements
+        SplashFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +23,10 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Use NavController for navigationLibrary
         final NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-
-        findViewById(R.id.fab).setOnClickListener(v -> navController.navigate(R.id.action_main_to_detail));
+        //Example navigation between nav items
+//        findViewById(R.id.fab).setOnClickListener(v -> navController.navigate(R.id.action_main_to_detail));
     }
 
     @Override
@@ -44,5 +49,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
     }
 }
