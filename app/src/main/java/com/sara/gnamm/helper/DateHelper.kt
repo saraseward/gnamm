@@ -10,10 +10,12 @@ class DateHelper {
 
         /**
          * yearsBetween calculates the number of years between two dates.
+         * Default parameter values:
+         * end => Date() (today)
          */
         //Default parameter values
         @JvmStatic
-        fun yearsBetween(start: Date, end: Date): Int {
+        fun yearsBetween(start: Date, end: Date = Date()): Int {
 
             val a = toCalendar(start)
             val b = toCalendar(end)
@@ -36,9 +38,12 @@ class DateHelper {
 
         /**
          * display returns a string representing a date.
+         * Default parameter values:
+         * format => "dd/MM/yyyy" (23/01/1996)
          */
         @JvmStatic
-        fun display(date: Date, format: String): String {
+        @JvmOverloads
+        fun display(date: Date, format: String = DefaultDateFormat): String {
             return SimpleDateFormat(format, Locale.getDefault()).format(date)
         }
     }
