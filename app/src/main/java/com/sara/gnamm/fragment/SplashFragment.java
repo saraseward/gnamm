@@ -9,9 +9,14 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 
 import com.sara.gnamm.R;
+import com.sara.gnamm.helper.DateHelperKt;
+import com.sara.gnamm.helper.UserHelperKt;
+import com.sara.gnamm.models.User;
 
 
 /**
@@ -68,6 +73,15 @@ public class SplashFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        AppCompatTextView title = view.findViewById(R.id.splash_title);
+        AppCompatButton btn = view.findViewById(R.id.splash_btn);
+
+        btn.setOnClickListener(v -> {
+            User user = UserHelperKt.randomUser();
+            boolean over18 = UserHelperKt.isOver18(user);
+            title.setText(DateHelperKt.display(user.getBirthDate()) + "\nUser is over 18: " + over18);
+        });
     }
 
     @Override
