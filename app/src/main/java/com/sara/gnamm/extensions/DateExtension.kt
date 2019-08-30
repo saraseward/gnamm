@@ -6,14 +6,16 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 const val DefaultDateFormat = "dd/MM/yyyy"
+const val ISODateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
 
+val Date.ISORepresentation: String
+    get() = this.display(ISODateFormat)
 /**
  * yearsBetween calculates the number of years between two dates.
  * Default parameter values:
  * end => Date() (today)
  */
 fun Date.yearsBetween(end: Date = Date()): Int {
-
     val a = toCalendar(this)
     val b = toCalendar(end)
 

@@ -11,6 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="@dimen/spacing_16"
         tools:context=".fragment.SplashFragment">
 
         <androidx.appcompat.widget.AppCompatButton
@@ -19,12 +20,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/spacing_16"
             android:text="Click me"
             app:layout_constraintEnd_toEndOf="@+id/splash_title"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/splash_title"
-            app:layout_constraintTop_toBottomOf="@+id/splash_title" />
+            app:layout_constraintTop_toBottomOf="@+id/splash_subtitle" />
+
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/splash_title"
@@ -34,8 +36,22 @@
             android:gravity="center"
             android:text="SPLASH"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/splash_subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_16"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/splash_title"
+            app:layout_constraintTop_toBottomOf="@+id/splash_title"
+            tools:text="User birth date in ISO fmt: 2018-05-17T15:07:36.091" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

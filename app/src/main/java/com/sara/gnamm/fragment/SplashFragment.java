@@ -75,12 +75,17 @@ public class SplashFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         AppCompatTextView title = view.findViewById(R.id.splash_title);
+        AppCompatTextView subtitle = view.findViewById(R.id.splash_subtitle);
+
         AppCompatButton btn = view.findViewById(R.id.splash_btn);
 
         btn.setOnClickListener(v -> {
             User user = UserHelperKt.randomUser();
             boolean over18 = UserHelperKt.isOver18(user);
-            title.setText(DateHelper.display(user.getBirthDate()) + "\nUser is over 18: " + over18);
+            title.setText(DateHelper.display(user.getBirthDate()));
+
+            subtitle.setText("User is over 18: " + over18 +
+                    "\nUser birth date in ISO fmt: " + DateHelper.getISORepresentation(user.getBirthDate()));
         });
     }
 

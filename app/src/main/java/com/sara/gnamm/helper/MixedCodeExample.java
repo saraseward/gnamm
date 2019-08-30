@@ -10,6 +10,7 @@ public class MixedCodeExample {
         //Kt in name means we are using a static top-level function from a kotlin file
         DateHelper.display(new Date()); //@JvmOverloads notation lets me use kotlin default values, otherwise this wouldn't compile
         DateHelper.display(new Date(), "MM/dd/yyyy");
-//        new Date().display() This won't work in Java classes
+        //Date().display() // This won't work in Java classes, only KT
+        DateHelper.getISORepresentation(new Date()); //KT => randomBirthDate().ISORepresentation
     }
 }
