@@ -5,7 +5,8 @@ import java.util.Date;
 public class MixedCodeExample {
 
     public static void useDateHelper(){
-        DateHelper.display(new Date()); //@JvmOverloads notation lets me use kotlin default values, otherwise this wouldn't compile
-        DateHelper.display(new Date(), "MM/dd/yyyy");
+        //Kt in name means we are using a static top-level function from a kotlin file
+        DateHelperKt.display(new Date()); //@JvmOverloads notation lets me use kotlin default values, otherwise this wouldn't compile
+        DateHelperKt.display(new Date(), "MM/dd/yyyy");
     }
 }
