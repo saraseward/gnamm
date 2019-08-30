@@ -1,3 +1,5 @@
+@file:JvmName("DateHelper")
+
 package com.sara.gnamm.helper
 
 import java.text.SimpleDateFormat
