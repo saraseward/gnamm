@@ -27,7 +27,6 @@ fun User.validate() {
 fun randomUser(): User {
     val random = Random().nextInt()
     return User(
-            id = random,
             name = "Sara $random",
             lastName = "Seward $random",
             sex = Sex.Female,

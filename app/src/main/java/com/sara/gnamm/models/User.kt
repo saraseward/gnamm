@@ -6,9 +6,10 @@ enum class Sex {
     Male, Female, Other, RatherNotSay
 }
 
+//Only one primary constructor
 class User(
 
-        var id: Int,
+        val id: Int = Random().nextInt(),
 
         var name: String,
 
