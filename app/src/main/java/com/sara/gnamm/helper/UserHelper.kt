@@ -13,9 +13,21 @@ fun isOver18(user: User): Boolean {
     return user.birthDate.yearsBetween() >= 18
 }
 
+fun User.validate() {
+    fun validateField(value: String, fieldName: String) {
+        if (value.isEmpty()) {
+            throw IllegalArgumentException(
+                    "Can't save user $id: empty $fieldName")
+        }
+    }
+    validateField(name, "Name") //todo get from string resources
+    validateField(address, "Address")
+}
+
 fun randomUser(): User {
     val random = Random().nextInt()
     return User(
+            id = random,
             name = "Sara $random",
             lastName = "Seward $random",
             sex = Sex.Female,
@@ -45,10 +57,7 @@ fun randomBirthDate(): Date {
         val randomYear = Random().nextInt(2019 - limit) + limit
         return simpleDateFormat.parse("01/01/$randomYear") ?: Date()
     } catch (e: ParseException) {
-       return simpleDateFormat.parse("15/07/1997") ?: Date()
+        return simpleDateFormat.parse("15/07/1997") ?: Date()
     }
-
-
-
 }
 
