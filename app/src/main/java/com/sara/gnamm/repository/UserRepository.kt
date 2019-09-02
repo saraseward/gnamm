@@ -1,6 +1,6 @@
 package com.sara.gnamm.repository
 
-import com.sara.gnamm.models.User
+import com.sara.gnamm.models.user.User
 
 interface UserRepository {
     //FIXME can I have a default db implementation/field?

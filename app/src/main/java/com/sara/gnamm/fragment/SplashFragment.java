@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.sara.gnamm.R;
 import com.sara.gnamm.extensions.DateHelper;
 import com.sara.gnamm.helper.UserHelperKt;
-import com.sara.gnamm.models.User;
+import com.sara.gnamm.models.user.User;
 
 
 /**

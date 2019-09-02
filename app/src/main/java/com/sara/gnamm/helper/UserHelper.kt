@@ -2,9 +2,9 @@ package com.sara.gnamm.helper
 
 import com.sara.gnamm.extensions.DefaultDateFormat
 import com.sara.gnamm.extensions.yearsBetween
-import com.sara.gnamm.models.Credentials
-import com.sara.gnamm.models.Sex
-import com.sara.gnamm.models.User
+import com.sara.gnamm.models.user.Credentials
+import com.sara.gnamm.models.user.Sex
+import com.sara.gnamm.models.user.User
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*

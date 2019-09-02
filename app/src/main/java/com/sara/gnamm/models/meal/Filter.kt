@@ -1,4 +1,4 @@
-package com.sara.gnamm.models
+package com.sara.gnamm.models.meal
 
 
 enum class Filter {
