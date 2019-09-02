@@ -7,7 +7,7 @@ enum class Sex {
 }
 
 //Only one primary constructor
-class User(
+data class User(
 
         val id: Int = Random().nextInt(),
 
