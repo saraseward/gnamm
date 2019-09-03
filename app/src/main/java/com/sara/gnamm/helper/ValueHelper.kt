@@ -22,7 +22,7 @@ fun randomUser(): User {
     )
 }
 
-/*
+
 fun listOfRandomUser(): MutableList<User> {
     val users = arrayListOf<User>()
 
@@ -33,7 +33,7 @@ fun listOfRandomUser(): MutableList<User> {
 
     return users
 }
-*/
+
 
 fun randomBirthDate(): Date {
     val simpleDateFormat = SimpleDateFormat(DefaultDateFormat, Locale.getDefault())
