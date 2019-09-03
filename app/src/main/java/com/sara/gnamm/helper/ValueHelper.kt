@@ -1,7 +1,7 @@
 package com.sara.gnamm.helper
 
 import com.sara.gnamm.extensions.DefaultDateFormat
-import com.sara.gnamm.extensions.yearsBetween
+import com.sara.gnamm.models.meal.Recipe
 import com.sara.gnamm.models.user.Credentials
 import com.sara.gnamm.models.user.Sex
 import com.sara.gnamm.models.user.User
@@ -9,21 +9,7 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun isOver18(user: User): Boolean {
-    return user.birthDate.yearsBetween() >= 18
-}
-
-fun User.validate() {
-    fun validateField(value: String, fieldName: String) {
-        if (value.isEmpty()) {
-            throw IllegalArgumentException(
-                    "Can't save user $id: empty $fieldName")
-        }
-    }
-    validateField(name, "Name") //todo get from string resources
-    validateField(address, "Address")
-}
-
+//User
 fun randomUser(): User {
     val random = Random().nextInt()
     return User(
@@ -36,7 +22,8 @@ fun randomUser(): User {
     )
 }
 
-fun listOfRandomUser(): List<User> {
+/*
+fun listOfRandomUser(): MutableList<User> {
     val users = arrayListOf<User>()
 
     val random = Random().nextInt(20) + 1 //max 20 users
@@ -46,7 +33,7 @@ fun listOfRandomUser(): List<User> {
 
     return users
 }
-
+*/
 
 fun randomBirthDate(): Date {
     val simpleDateFormat = SimpleDateFormat(DefaultDateFormat, Locale.getDefault())
@@ -60,3 +47,25 @@ fun randomBirthDate(): Date {
     }
 }
 
+//Recipe
+fun randomRecipe(): Recipe {
+    val random = Random().nextInt()
+    return Recipe(
+            name = "Pasta al pesto",
+            description = "Pesto pasta",
+            ingredients = mutableListOf("pasta", "pesto", "pepe"),
+            user = randomUser()
+    )
+}
+
+
+fun listOfRandomRecipes(): MutableList<Recipe> {
+    val recipes = arrayListOf<Recipe>()
+
+    val random = Random().nextInt(20) + 1 //max 20 users
+    for (i in 0..random) {
+        recipes.add(randomRecipe())
+    }
+
+    return recipes
+}

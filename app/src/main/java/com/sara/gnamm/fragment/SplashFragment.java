@@ -15,7 +15,8 @@ import androidx.fragment.app.Fragment;
 
 import com.sara.gnamm.R;
 import com.sara.gnamm.extensions.DateHelper;
-import com.sara.gnamm.helper.UserHelperKt;
+import com.sara.gnamm.extensions.UserExtensionKt;
+import com.sara.gnamm.helper.ValueHelperKt;
 import com.sara.gnamm.models.user.User;
 
 
@@ -80,8 +81,8 @@ public class SplashFragment extends Fragment {
         AppCompatButton btn = view.findViewById(R.id.splash_btn);
 
         btn.setOnClickListener(v -> {
-            User user = UserHelperKt.randomUser();
-            boolean over18 = UserHelperKt.isOver18(user);
+            User user = ValueHelperKt.randomUser();
+            boolean over18 = UserExtensionKt.isOver18(user);
             title.setText(DateHelper.display(user.getBirthDate()));
 
             subtitle.setText("User is over 18: " + over18 +
