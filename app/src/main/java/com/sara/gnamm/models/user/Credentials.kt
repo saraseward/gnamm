@@ -1,6 +1,6 @@
 package com.sara.gnamm.models.user
 
-class Credentials(
+data class Credentials(
         var username: String,
         var password: String
 )

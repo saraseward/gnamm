@@ -82,6 +82,7 @@ public class SplashFragment extends Fragment {
         AppCompatButton btn = view.findViewById(R.id.generate_btn);
 
         btn.setOnClickListener(v -> {
+
             Recipe recipe = Recipe.mock();
 
             name.setText(recipe.getName());
