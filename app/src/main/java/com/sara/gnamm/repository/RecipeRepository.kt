@@ -13,10 +13,10 @@ interface RecipeRepository {
     fun deleteAllByUserId(userId: Int)
 }
 
-class RecipeRepositoryMock(private val recipes: MutableList<Recipe> = mutableListOf()) : RecipeRepository{
+class RecipeRepositoryMock(private val recipes: MutableListMock<Recipe> = MutableListMock()) : RecipeRepository{
 
     override fun findAll(): MutableList<Recipe> {
-        return recipes
+        return recipes.list
     }
 
     override fun findAllByUserId(id: Int): MutableList<Recipe> {
@@ -24,7 +24,10 @@ class RecipeRepositoryMock(private val recipes: MutableList<Recipe> = mutableLis
     }
 
     override fun find(id: Int, userId: Int): Recipe {
-        return if (recipes.filter { id == it.id && userId == it.user.id }.size == 1) recipes[0] else throw RuntimeException("Recipe for user not found")
+        return if (recipes.filter { id == it.id
+                        && userId == it.user.id }.size == 1)
+            recipes[0]
+                else throw RuntimeException("Recipe for user not found")
     }
 
     override fun save(recipe: Recipe): Recipe {
@@ -33,14 +36,12 @@ class RecipeRepositoryMock(private val recipes: MutableList<Recipe> = mutableLis
     }
 
     override fun update(recipe: Recipe): Recipe {
-        var old = find(recipe.id, recipe.user.id)
-        var idx = recipes.indexOf(old)
-        recipes[idx] = recipe
-        return recipes[idx]
+        recipes.update(recipe)
+        return recipes[recipes.indexOf(recipe)]
     }
 
     override fun delete(recipe: Recipe) {
-        recipes.removeIf { recipe.id == it.id && recipe.user.id == it.user.id }
+        recipes.remove(recipe)
     }
 
     override fun deleteAllByUserId(userId: Int) {
