@@ -22,7 +22,7 @@ fun randomUser(): User {
     )
 }
 
-
+/*
 fun listOfRandomUser(): MutableList<User> {
     val users = arrayListOf<User>()
 
@@ -33,7 +33,7 @@ fun listOfRandomUser(): MutableList<User> {
 
     return users
 }
-
+*/
 
 fun randomBirthDate(): Date {
     val simpleDateFormat = SimpleDateFormat(DefaultDateFormat, Locale.getDefault())
@@ -51,14 +51,14 @@ fun randomBirthDate(): Date {
 fun randomRecipe(): Recipe {
     val random = Random().nextInt()
     return Recipe(
-            name = "Pasta al pesto",
-            description = "Pesto pasta",
+            name = "Pasta al pesto $random",
+            description = "Pesto pasta $random",
             ingredients = mutableListOf("pasta", "pesto", "pepe"),
             user = randomUser()
     )
 }
 
-
+/*
 fun listOfRandomRecipes(): MutableList<Recipe> {
     val recipes = arrayListOf<Recipe>()
 
@@ -68,4 +68,16 @@ fun listOfRandomRecipes(): MutableList<Recipe> {
     }
 
     return recipes
+}
+*/
+
+fun <T> listOfRandomStuff(f: () -> T): MutableList<T> {
+    val list = arrayListOf<T>()
+
+    val random = Random().nextInt(20) + 1 //max 20 users
+    for (i in 0..random) {
+        list.add(f())
+    }
+
+    return list
 }
