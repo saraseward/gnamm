@@ -1,7 +1,5 @@
 package com.sara.gnamm.repository
 
-import com.sara.gnamm.helper.listOfRandomStuff
-import com.sara.gnamm.helper.randomRecipe
 import com.sara.gnamm.models.meal.Recipe
 
 
@@ -9,18 +7,15 @@ interface RecipeRepository {
     fun findAll(): MutableList<Recipe>
     fun findAllByUserId(id: Int): MutableList<Recipe>
     fun find(id: Int, userId: Int): Recipe
-    fun save(recipe: Recipe, userId: Int): Recipe
+    fun save(recipe: Recipe): Recipe
     fun update(recipe: Recipe): Recipe
     fun delete(recipe: Recipe)
     fun deleteAllByUserId(userId: Int)
 }
 
-class RecipeRepositoryMock : RecipeRepository {
-
-    var recipes = mutableListOf<Recipe>()
+class RecipeRepositoryMock(private val recipes: MutableList<Recipe> = mutableListOf()) : RecipeRepository{
 
     override fun findAll(): MutableList<Recipe> {
-        recipes = listOfRandomStuff { randomRecipe() }
         return recipes
     }
 
@@ -32,9 +27,9 @@ class RecipeRepositoryMock : RecipeRepository {
         return if (recipes.filter { id == it.id && userId == it.user.id }.size == 1) recipes[0] else throw RuntimeException("Recipe for user not found")
     }
 
-    override fun save(recipe: Recipe, userId: Int): Recipe {
+    override fun save(recipe: Recipe): Recipe {
         recipes.add(recipe)
-        return find(recipe.id, userId)
+        return find(recipe.id, recipe.user.id)
     }
 
     override fun update(recipe: Recipe): Recipe {

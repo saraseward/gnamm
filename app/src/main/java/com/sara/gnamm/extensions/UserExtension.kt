@@ -1,3 +1,5 @@
+@file:JvmName("UserHelper")
+
 package com.sara.gnamm.extensions
 
 import com.sara.gnamm.models.user.User
@@ -15,4 +17,8 @@ fun User.validate() {
     }
     validateField(name, "Name") //todo get from string resources
     validateField(address, "Address")
+}
+
+fun User.displayName(): String {
+    return "$name $lastName"
 }

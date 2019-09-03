@@ -14,10 +14,9 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 
 import com.sara.gnamm.R;
-import com.sara.gnamm.extensions.DateHelper;
-import com.sara.gnamm.extensions.UserExtensionKt;
-import com.sara.gnamm.helper.ValueHelperKt;
-import com.sara.gnamm.models.user.User;
+import com.sara.gnamm.extensions.UserHelper;
+import com.sara.gnamm.models.meal.Recipe;
+import com.sara.gnamm.repository.RecipeRepositoryMock;
 
 
 /**
@@ -75,18 +74,33 @@ public class SplashFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        AppCompatTextView title = view.findViewById(R.id.splash_title);
-        AppCompatTextView subtitle = view.findViewById(R.id.splash_subtitle);
+        RecipeRepositoryMock repo = new RecipeRepositoryMock();
 
-        AppCompatButton btn = view.findViewById(R.id.splash_btn);
+        AppCompatTextView name = view.findViewById(R.id.recipe_name);
+        AppCompatTextView author = view.findViewById(R.id.recipe_author);
+        AppCompatTextView description = view.findViewById(R.id.recipe_description);
+        AppCompatButton btn = view.findViewById(R.id.generate_btn);
 
         btn.setOnClickListener(v -> {
-            User user = ValueHelperKt.randomUser();
-            boolean over18 = UserExtensionKt.isOver18(user);
-            title.setText(DateHelper.display(user.getBirthDate()));
+            Recipe recipe = Recipe.mock();
 
-            subtitle.setText("User is over 18: " + over18 +
-                    "\nUser birth date in ISO fmt: " + DateHelper.getISORepresentation(user.getBirthDate()));
+            name.setText(recipe.getName());
+            author.setText(getString(R.string.recipe_author, UserHelper.displayName(recipe.getUser())));
+            description.setText(recipe.getDescription());
+
+            ((AppCompatTextView) view.findViewById(R.id.test_findAll)).setText("Repository find all count: " + repo.findAll().size());
+
+            repo.save(recipe);
+            ((AppCompatTextView) view.findViewById(R.id.test_findAll2)).setText("Repository find all after add count: " + repo.findAll().size());
+
+            ((AppCompatTextView) view.findViewById(R.id.test_findAll3)).setText("Repository find by id: " + repo.find(recipe.getId(), recipe.getUser().getId()));
+
+            recipe.setName("Zuppa di zucca");
+            ((AppCompatTextView) view.findViewById(R.id.test_findAll4)).setText("Repository update: " + repo.update(recipe));
+
+            repo.delete(recipe);
+            ((AppCompatTextView) view.findViewById(R.id.test_findAll5)).setText("Repository delete: " + repo.findAll().size());
+
         });
     }
 

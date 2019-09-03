@@ -1,7 +1,5 @@
 package com.sara.gnamm.repository
 
-import com.sara.gnamm.helper.listOfRandomStuff
-import com.sara.gnamm.helper.randomUser
 import com.sara.gnamm.models.user.User
 
 interface UserRepository {
@@ -16,12 +14,9 @@ interface UserRepository {
 }
 //todo implement in Room https://developer.android.com/topic/libraries/architecture/room
 
-class UserRepositoryMock : UserRepository {
-
-    var users = mutableListOf<User>()
+class UserRepositoryMock(private val users: MutableList<User> = mutableListOf()) : UserRepository {
 
     override fun findAll(): MutableList<User> {
-        users = listOfRandomStuff { randomUser() }
         return users
     }
 
@@ -35,8 +30,8 @@ class UserRepositoryMock : UserRepository {
     }
 
     override fun update(user: User): User {
-        var old = find(user.id)
-        var idx = users.indexOf(old)
+        val old = find(user.id)
+        val idx = users.indexOf(old)
         users[idx] = user
         return users[idx]
     }
@@ -46,7 +41,7 @@ class UserRepositoryMock : UserRepository {
     }
 
     override fun deleteAll() {
-        users = mutableListOf()
+        users.clear()
     }
 
 }
