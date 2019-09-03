@@ -1,14 +1,16 @@
 package com.sara.gnamm.repository
 
+import com.sara.gnamm.helper.listOfRandomStuff
+import com.sara.gnamm.helper.randomUser
 import com.sara.gnamm.models.user.User
 
 interface UserRepository {
     //FIXME can I have a default db implementation/field?
 
-    fun findAll(): List<User> //fun findAll(): List<User> = println("Call findAll") => this is a default implementation of a method
+    fun findAll(): MutableList<User> //fun findAll(): List<User> = println("Call findAll") => this is a default implementation of a method
     fun find(id: Int): User
     fun save(user: User): User
-    fun update(id: Int, user: User): User
+    fun update(user: User): User
     fun delete(id: Int)
     fun deleteAll()
 }
@@ -18,7 +20,8 @@ class UserRepositoryMock : UserRepository {
 
     var users = mutableListOf<User>()
 
-    override fun findAll(): List<User> {
+    override fun findAll(): MutableList<User> {
+        users = listOfRandomStuff { randomUser() }
         return users
     }
 
@@ -31,8 +34,8 @@ class UserRepositoryMock : UserRepository {
         return find(user.id) //to make sure that the user we've saved is the same as the user we wanted to save
     }
 
-    override fun update(id: Int, user: User): User {
-        var old = find(id)
+    override fun update(user: User): User {
+        var old = find(user.id)
         var idx = users.indexOf(old)
         users[idx] = user
         return users[idx]
