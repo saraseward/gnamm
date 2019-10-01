@@ -2,15 +2,14 @@ package com.sara.gnamm.repository
 
 import com.sara.gnamm.models.meal.Recipe
 
-
 interface RecipeRepository {
     fun findAll(): MutableList<Recipe>
-    fun findAllByUserId(id: Int): MutableList<Recipe>
-    fun find(id: Int, userId: Int): Recipe
+    fun findAllByUserId(id: String): MutableList<Recipe>
+    fun find(id: String, userId: String): Recipe
     fun save(recipe: Recipe): Recipe
     fun update(recipe: Recipe): Recipe
     fun delete(recipe: Recipe)
-    fun deleteAllByUserId(userId: Int)
+    fun deleteAllByUserId(userId: String)
 }
 
 class RecipeRepositoryMock(private val recipes: MutableListMock<Recipe> = MutableListMock()) : RecipeRepository{
@@ -19,11 +18,11 @@ class RecipeRepositoryMock(private val recipes: MutableListMock<Recipe> = Mutabl
         return recipes.list
     }
 
-    override fun findAllByUserId(id: Int): MutableList<Recipe> {
+    override fun findAllByUserId(id: String): MutableList<Recipe> {
         return recipes.filter { id == it.user.id }.toMutableList()
     }
 
-    override fun find(id: Int, userId: Int): Recipe {
+    override fun find(id: String, userId: String): Recipe {
         return if (recipes.filter { id == it.id
                         && userId == it.user.id }.size == 1)
             recipes[0]
@@ -44,7 +43,7 @@ class RecipeRepositoryMock(private val recipes: MutableListMock<Recipe> = Mutabl
         recipes.remove(recipe)
     }
 
-    override fun deleteAllByUserId(userId: Int) {
+    override fun deleteAllByUserId(userId: String) {
         recipes.removeIf { userId == it.user.id }
     }
 }
