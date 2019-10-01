@@ -1,27 +1,33 @@
-package com.sara.gnamm.fragment;
+package com.sara.gnamm.fragments;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.fragment.app.Fragment;
+
 import com.sara.gnamm.R;
+import com.sara.gnamm.extensions.UserHelper;
+import com.sara.gnamm.models.meal.Recipe;
+import com.sara.gnamm.repository.RecipeRepositoryMock;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link LoginFragment.OnFragmentInteractionListener} interface
+ * {@link SplashFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link LoginFragment#newInstance} factory method to
+ * Use the {@link SplashFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LoginFragment extends Fragment {
+public class SplashFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -33,7 +39,7 @@ public class LoginFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public LoginFragment() {
+    public SplashFragment() {
         // Required empty public constructor
     }
 
@@ -43,11 +49,11 @@ public class LoginFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment LoginFragment.
+     * @return A new instance of fragment SplashFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static LoginFragment newInstance(String param1, String param2) {
-        LoginFragment fragment = new LoginFragment();
+    public static SplashFragment newInstance(String param1, String param2) {
+        SplashFragment fragment = new SplashFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -65,10 +71,45 @@ public class LoginFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        RecipeRepositoryMock repo = new RecipeRepositoryMock();
+
+        AppCompatTextView name = view.findViewById(R.id.recipe_name);
+        AppCompatTextView author = view.findViewById(R.id.recipe_author);
+        AppCompatTextView description = view.findViewById(R.id.recipe_description);
+        AppCompatButton btn = view.findViewById(R.id.generate_btn);
+
+        btn.setOnClickListener(v -> {
+
+            Recipe recipe = Recipe.mock();
+
+            name.setText(recipe.getName());
+            author.setText(getString(R.string.recipe_author, UserHelper.displayName(recipe.getUser())));
+            description.setText(recipe.getDescription());
+
+            ((AppCompatTextView) view.findViewById(R.id.test_findAll)).setText("Repository find all count: " + repo.findAll().size());
+
+            repo.save(recipe);
+            ((AppCompatTextView) view.findViewById(R.id.test_findAll2)).setText("Repository find all after add count: " + repo.findAll().size());
+
+            ((AppCompatTextView) view.findViewById(R.id.test_findAll3)).setText("Repository find by id: " + repo.find(recipe.getId(), recipe.getUser().getId()));
+
+            recipe.setName("Zuppa di zucca");
+            ((AppCompatTextView) view.findViewById(R.id.test_findAll4)).setText("Repository update: " + repo.update(recipe));
+
+            repo.delete(recipe);
+            ((AppCompatTextView) view.findViewById(R.id.test_findAll5)).setText("Repository delete: " + repo.findAll().size());
+
+        });
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        return inflater.inflate(R.layout.fragment_splash, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

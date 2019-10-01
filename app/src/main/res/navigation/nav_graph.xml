@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.sara.gnamm.fragment.SplashFragment"
+        android:name="com.sara.gnamm.fragments.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash">
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.sara.gnamm.fragment.LoginFragment"
+        android:name="com.sara.gnamm.fragments.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -35,7 +35,7 @@
 
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.sara.gnamm.fragment.RegisterFragment"
+        android:name="com.sara.gnamm.fragments.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register">
         <action
@@ -47,7 +47,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.sara.gnamm.fragment.MainFragment"
+        android:name="com.sara.gnamm.fragments.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main">
         <action
@@ -57,7 +57,7 @@
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.sara.gnamm.fragment.DetailFragment"
+        android:name="com.sara.gnamm.fragments.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" />
 </navigation>
