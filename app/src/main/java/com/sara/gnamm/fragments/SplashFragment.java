@@ -1,4 +1,4 @@
-package com.sara.gnamm.fragment;
+package com.sara.gnamm.fragments;
 
 import android.content.Context;
 import android.net.Uri;

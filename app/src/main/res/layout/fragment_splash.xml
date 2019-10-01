@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/spacing_16"
-        tools:context=".fragment.SplashFragment">
+        tools:context=".fragments.SplashFragment">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/generate_btn"
