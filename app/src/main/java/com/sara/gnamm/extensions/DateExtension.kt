@@ -16,6 +16,13 @@ val Date.ISORepresentation: String
  * end => Date() (today)
  */
 fun Date.yearsBetween(end: Date = Date()): Int {
+
+    fun toCalendar(date: Date): Calendar {
+        val cal = Calendar.getInstance(Locale.getDefault())
+        cal.time = date
+        return cal
+    }
+
     val a = toCalendar(this)
     val b = toCalendar(end)
 
@@ -27,14 +34,6 @@ fun Date.yearsBetween(end: Date = Date()): Int {
     }
     return diff
 }
-
-fun toCalendar(date: Date): Calendar {
-    val cal = Calendar.getInstance(Locale.getDefault())
-    cal.time = date
-    return cal
-}
-
-
 /**
  * display returns a string representing a date.
  * Default parameter values:

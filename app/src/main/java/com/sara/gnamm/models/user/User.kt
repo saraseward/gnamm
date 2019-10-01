@@ -12,7 +12,7 @@ enum class Sex {
 //Only one primary constructor
 data class User(
 
-        val id: Int,
+        val id: String,
 
         var name: String,
 
@@ -39,7 +39,7 @@ data class User(
         fun mock(): User {
             val random = Random().nextInt(30)
             return User(
-                    id = random,
+                    id = "$random",
                     name = "Sara $random",
                     lastName = "Seward $random",
                     sex = Sex.Female,
