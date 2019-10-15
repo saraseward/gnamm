@@ -1,15 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.LoginFragment">
+    android:layout_margin="@dimen/spacing_16"
+    app:cardElevation="@dimen/spacing_4">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="login"
-        style="@style/placeholderTextView"/>
+        android:padding="@dimen/spacing_16"
+        tools:context=".fragments.SplashFragment">
 
-</FrameLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/generate_btn"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/login"
+            android:layout_marginTop="@dimen/spacing_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/login_title"
+            app:layout_constraintHorizontal_bias="0.0"
+            android:textColor="@android:color/white"
+            app:layout_constraintStart_toStartOf="@+id/login_title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/login_title"
+            style="@style/placeholderTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/login" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/login_subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_16"
+            android:gravity="center"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/login_title"
+            app:layout_constraintTop_toBottomOf="@+id/login_title"
+            android:text="@string/login_subtitle" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/username_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_24"
+            android:textAllCaps="true"
+            android:gravity="start"
+            android:textStyle="bold"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toStartOf="@+id/login_title"
+            card_view:layout_constraintTop_toBottomOf="@+id/login_subtitle"
+            android:text="@string/username_or_email_label" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/password_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_16"
+            android:textAllCaps="true"
+            android:gravity="start"
+            android:textStyle="bold"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toStartOf="@+id/login_title"
+            card_view:layout_constraintTop_toBottomOf="@+id/username_label"
+            android:text="@string/password_label" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/forgot_password_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_24"
+            android:gravity="center"
+            android:textStyle="bold"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toStartOf="@+id/login_title"
+            card_view:layout_constraintTop_toBottomOf="@+id/password_label"
+            tools:text="Forgot password?" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

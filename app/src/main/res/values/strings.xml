@@ -7,4 +7,6 @@
     <string name="recipe_author">This recipe was created by user: %s</string>
     <string name="login">LOGIN</string>
     <string name="login_subtitle">Login with your username or email</string>
+    <string name="username_or_email_label">USERNAME OR EMAIL</string>
+    <string name="password_label">PASSWORD</string>
 </resources>
