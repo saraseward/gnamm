@@ -88,6 +88,7 @@
             android:layout_marginTop="@dimen/spacing_24"
             android:gravity="center"
             android:textStyle="bold"
+            android:padding="@dimen/spacing_8"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toStartOf="@+id/login_title"
