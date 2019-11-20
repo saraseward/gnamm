@@ -79,7 +79,7 @@
             card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toStartOf="@+id/login_title"
             card_view:layout_constraintTop_toBottomOf="@+id/username_label"
-            android:hint="..." />
+            android:hint="@string/username_or_email_label" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/password_label"
@@ -107,7 +107,7 @@
             card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toStartOf="@+id/login_title"
             card_view:layout_constraintTop_toBottomOf="@+id/password_label"
-            android:hint="..."/>
+            android:hint="@string/password_label"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/forgot_password_label"
