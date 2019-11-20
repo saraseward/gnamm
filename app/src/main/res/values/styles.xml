@@ -10,7 +10,7 @@
         <item name="colorControlHighlight">@color/colorAccent</item>
         <item name="android:colorBackground">@color/backgroundLight</item>
         <!--Button-->
-        <item name="android:colorButtonNormal">@android:color/white</item>
+        <item name="android:colorButtonNormal">@color/colorAccent</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -21,6 +21,12 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="splashTextView" parent="TextAppearance.AppCompat.Display3">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
 
     <style name="placeholderTextView">
         <item name="android:textColor">@color/colorAccent</item>
