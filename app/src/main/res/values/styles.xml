@@ -6,11 +6,13 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:fontFamily">@font/product_sans</item>
         <item name="colorControlHighlight">@color/colorAccent</item>
         <item name="android:colorBackground">@color/backgroundLight</item>
+        <!--Text-->
+        <item name="android:fontFamily">@font/product_sans</item>
         <!--Button-->
         <item name="android:colorButtonNormal">@color/colorAccent</item>
+        <item name="android:textAppearanceButton">@style/baseText.button.textWhite</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -22,15 +24,67 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <!-- Placeholders -->
     <style name="splashTextView" parent="TextAppearance.AppCompat.Display3">
         <item name="android:textStyle">bold</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/colorAccent</item>
     </style>
 
-    <style name="placeholderTextView">
+    <!-- Text -->
+    <style name="coloredTitle">
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textSize">40sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Following https://learnui.design/blog/android-material-design-font-size-guidelines.html -->
+    <style name="pageTitle">
+        <item name="android:textColor">@color/text_grey900</item>
+        <item name="android:textSize">@dimen/text_20</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="baseText">
+        <item name="android:textColor">@color/text_grey800</item>
+        <item name="android:textSize">@dimen/text_14</item>
+    </style>
+
+    <style name="baseText.listTitle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="secondaryText">
+        <item name="android:textColor">@color/text_grey600</item>
+        <item name="android:textSize">@dimen/text_14</item>
+    </style>
+
+    <style name="textInput">
+        <item name="android:textColor">@color/text_grey800</item>
+        <item name="android:textSize">@dimen/text_16</item>
+    </style>
+
+    <style name="listItem">
+        <item name="android:textColor">@color/text_grey800</item>
+        <item name="android:textSize">@dimen/text_16</item>
+    </style>
+
+    <style name="importantSnippets">
+        <item name="android:textColor">@color/text_grey800</item>
+        <item name="android:textSize">@dimen/text_16</item>
+    </style>
+
+    <!--Button variations-->
+    <style name="baseText.button">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="baseText.button.textWhite">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="baseText.button.textAccent">
+        <item name="android:textColor">@color/colorAccent</item>
     </style>
 </resources>

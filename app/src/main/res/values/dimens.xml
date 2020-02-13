@@ -4,4 +4,12 @@
     <dimen name="spacing_16">16dp</dimen>
     <dimen name="spacing_8">8dp</dimen>
     <dimen name="spacing_4">4dp</dimen>
+
+    <!-- Following https://learnui.design/blog/android-material-design-font-size-guidelines.html -->
+    <!--Page title-->
+    <dimen name="text_20">20sp</dimen>
+    <!--Paragraph, list title and buttons/tabs (medium weight), secondary text (lighter color)-->
+    <dimen name="text_14">14sp</dimen>
+    <!--List item, important text snippets, text input-->
+   <dimen name="text_16">16sp</dimen>
 </resources>
