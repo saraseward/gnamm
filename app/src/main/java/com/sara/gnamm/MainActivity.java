@@ -6,33 +6,33 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import com.sara.gnamm.fragment.DetailFragment;
-import com.sara.gnamm.fragment.LoginFragment;
-import com.sara.gnamm.fragment.MainFragment;
-import com.sara.gnamm.fragment.RegisterFragment;
-import com.sara.gnamm.fragment.SplashFragment;
+import com.sara.gnamm.fragments.DetailFragment;
+import com.sara.gnamm.fragments.LoginFragment;
+import com.sara.gnamm.fragments.MainFragment;
+import com.sara.gnamm.fragments.RegisterFragment;
+import com.sara.gnamm.fragments.SplashFragment;
 
 public class MainActivity extends AppCompatActivity implements
         SplashFragment.OnFragmentInteractionListener,
         LoginFragment.OnFragmentInteractionListener,
         RegisterFragment.OnFragmentInteractionListener,
         MainFragment.OnFragmentInteractionListener,
-        DetailFragment.OnFragmentInteractionListener{
+        DetailFragment.OnFragmentInteractionListener {
+
+    private NavController navController;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Toolbar
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         //Use NavController for navigationLibrary
-        final NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         //Example navigation between nav items
 //        findViewById(R.id.fab).setOnClickListener(v -> navController.navigate(R.id.action_main_to_detail));
     }

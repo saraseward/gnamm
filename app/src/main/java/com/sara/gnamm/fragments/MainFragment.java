@@ -3,14 +3,20 @@ package com.sara.gnamm.fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.fragment.app.Fragment;
+
 import com.sara.gnamm.R;
+import com.sara.gnamm.extensions.UserHelper;
+import com.sara.gnamm.models.meal.Recipe;
+import com.sara.gnamm.repository.RecipeRepositoryMock;
 
 
 /**
@@ -71,6 +77,42 @@ public class MainFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        RecipeRepositoryMock repo = new RecipeRepositoryMock();
+
+        AppCompatTextView name = view.findViewById(R.id.recipe_detail_name);
+        AppCompatTextView author = view.findViewById(R.id.recipe_detail_author);
+        AppCompatTextView description = view.findViewById(R.id.recipe_detail_description);
+        AppCompatButton btn = view.findViewById(R.id.generate_btn);
+
+        btn.setOnClickListener(v -> {
+
+            Recipe recipe = Recipe.mock();
+
+            name.setText(recipe.getName());
+            author.setText(getString(R.string.recipe_author, UserHelper.displayName(recipe.getUser())));
+            description.setText(recipe.getDescription());
+
+            ((AppCompatTextView) view.findViewById(R.id.test_findAll)).setText("Repository find all count: " + repo.findAll().size());
+
+            repo.save(recipe);
+            ((AppCompatTextView) view.findViewById(R.id.test_findAll1)).setText("Repository find all after add count: " + repo.findAll().size());
+
+            ((AppCompatTextView) view.findViewById(R.id.test_findbyPsw)).setText("Repository find by id: " + repo.find(recipe.getId(), recipe.getUser().getId()));
+
+            recipe.setName("Zuppa di zucca");
+            ((AppCompatTextView) view.findViewById(R.id.test_findAll4)).setText("Repository update: " + repo.update(recipe));
+
+            repo.delete(recipe);
+            ((AppCompatTextView) view.findViewById(R.id.test_findAll5)).setText("Repository delete: " + repo.findAll().size());
+
+        });
+
+    }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -95,16 +137,6 @@ public class MainFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

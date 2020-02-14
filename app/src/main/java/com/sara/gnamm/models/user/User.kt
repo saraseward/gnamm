@@ -24,7 +24,9 @@ data class User(
 
         var credentials: Credentials,
 
-        var address: String
+        var address: String,
+
+        var email: String
 
         //TODO:
         //Filters (gluten free, vegan, vegetarian)
@@ -34,6 +36,7 @@ data class User(
         //Recipes
         //Guests (happy, unhappy, were already friends, were not friends)
 ){
+
     companion object {
         @JvmStatic
         fun mock(): User {
@@ -43,6 +46,7 @@ data class User(
                     name = "Sara $random",
                     lastName = "Seward $random",
                     sex = Sex.Female,
+                    email = "saraseward$random@gmail.com",
                     birthDate = birthDate(),
                     credentials = Credentials(username = "saraseward", password = "a"),
                     address = "Via E. Stassano 29, 25125 Brescia (BS)"

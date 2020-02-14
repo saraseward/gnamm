@@ -6,11 +6,12 @@ interface UserRepository {
     //FIXME can I have a default db implementation/field?
 
     fun findAll(): MutableList<User> //fun findAll(): List<User> = println("Call findAll") => this is a default implementation of a method
-    fun find(id: Int): User
+    fun find(id: String): User
     fun save(user: User): User
     fun update(user: User): User
-    fun delete(id: Int)
+    fun delete(id: String)
     fun deleteAll()
+    fun findByUsernameAndPassword(usernameOrEmail: CharSequence, psw: CharSequence): User
 }
 //todo implement in Room https://developer.android.com/topic/libraries/architecture/room
 
@@ -20,7 +21,7 @@ class UserRepositoryMock(private val users: MutableList<User> = mutableListOf())
         return users
     }
 
-    override fun find(id: Int): User {
+    override fun find(id: String): User {
         return if (users.filter { id == it.id }.size == 1) users[0] else throw RuntimeException("User not found")
     }
 
@@ -36,12 +37,20 @@ class UserRepositoryMock(private val users: MutableList<User> = mutableListOf())
         return users[idx]
     }
 
-    override fun delete(id: Int) {
+    override fun delete(id: String) {
         users.removeIf { id == it.id }
     }
 
     override fun deleteAll() {
         users.clear()
+    }
+
+    override fun findByUsernameAndPassword(usernameOrEmail: CharSequence, psw: CharSequence): User {
+        return users.asSequence()
+                .filter {
+                    it.credentials.password == psw &&
+                            (it.credentials.username == usernameOrEmail || it.email == usernameOrEmail)
+                }.first()
     }
 
 }
