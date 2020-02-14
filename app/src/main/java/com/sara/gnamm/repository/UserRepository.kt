@@ -11,6 +11,7 @@ interface UserRepository {
     fun update(user: User): User
     fun delete(id: String)
     fun deleteAll()
+    fun findByUsernameAndPassword(usernameOrEmail: CharSequence, psw: CharSequence): User
 }
 //todo implement in Room https://developer.android.com/topic/libraries/architecture/room
 
@@ -42,6 +43,14 @@ class UserRepositoryMock(private val users: MutableList<User> = mutableListOf())
 
     override fun deleteAll() {
         users.clear()
+    }
+
+    override fun findByUsernameAndPassword(usernameOrEmail: CharSequence, psw: CharSequence): User {
+        return users.asSequence()
+                .filter {
+                    it.credentials.password == psw &&
+                            (it.credentials.username == usernameOrEmail || it.email == usernameOrEmail)
+                }.first()
     }
 
 }
