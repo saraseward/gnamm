@@ -1,15 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.MainFragment">
+    android:layout_margin="@dimen/spacing_16"
+    app:cardElevation="@dimen/spacing_4">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Dashboard - list of people around you"
-        style="@style/placeholderTextView"/>
+        android:padding="@dimen/spacing_16"
+        tools:context=".fragments.SplashFragment">
 
-</FrameLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/generate_btn"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/generate_btn"
+            android:layout_marginTop="@dimen/spacing_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/recipe_detail_name"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/recipe_detail_name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/recipe_detail_name"
+            style="@style/coloredTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Recipe name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/recipe_detail_author"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_16"
+            android:gravity="center"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/recipe_detail_name"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_detail_name"
+            tools:text="@string/recipe_author" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/recipe_detail_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_16"
+            android:gravity="center"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toStartOf="@+id/recipe_detail_name"
+            card_view:layout_constraintTop_toBottomOf="@+id/recipe_detail_author"
+            tools:text="Grape must, which is called moustos in Greek, is made using the juice squeezed from fresh grapes. This is made in large quantities during the September grape harvest in Greece. It freezes well and can be used throughout the year. " />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/test_findAll"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_24"
+            android:textAllCaps="true"
+            android:gravity="center"
+            android:textStyle="bold"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toStartOf="@+id/recipe_detail_name"
+            card_view:layout_constraintTop_toBottomOf="@+id/recipe_detail_description"
+            tools:text="Repository find all: " />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/test_findAll1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_16"
+            android:textAllCaps="true"
+            android:gravity="center"
+            android:textStyle="bold"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toStartOf="@+id/recipe_detail_name"
+            card_view:layout_constraintTop_toBottomOf="@+id/test_findAll"
+            tools:text="Repository find all after add: " />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/test_findbyPsw"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_16"
+            android:textAllCaps="true"
+            android:gravity="center"
+            android:textStyle="bold"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toStartOf="@+id/recipe_detail_name"
+            card_view:layout_constraintTop_toBottomOf="@+id/test_findAll1"
+            tools:text="Repository find by id: " />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/test_findAll4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_16"
+            android:textAllCaps="true"
+            android:gravity="center"
+            android:textStyle="bold"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toStartOf="@+id/recipe_detail_name"
+            card_view:layout_constraintTop_toBottomOf="@+id/test_findbyPsw"
+            tools:text="Repository update: " />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/test_findAll5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_16"
+            android:textAllCaps="true"
+            android:gravity="center"
+            android:textStyle="bold"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toStartOf="@+id/recipe_detail_name"
+            card_view:layout_constraintTop_toBottomOf="@+id/test_findAll4"
+            tools:text="Repository delete: " />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
