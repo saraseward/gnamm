@@ -20,12 +20,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.Task;
 import com.sara.gnamm.R;
+import com.sara.gnamm.models.user.User;
 import com.sara.gnamm.repository.UserRepositoryMock;
+import com.sara.gnamm.services.LoginService;
+import com.sara.gnamm.services.ServiceError;
+import com.sara.gnamm.services.ServiceListener;
 
 public class LoginFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
-    public static final int RC_SIGN_IN = 3;
+    static final int RC_SIGN_IN = 3;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,12 +51,16 @@ public class LoginFragment extends Fragment {
         AppCompatEditText psw = view.findViewById(R.id.login_password_value);
 
         view.findViewById(R.id.login_btn).setOnClickListener(v -> {
-            repo.findByUsernameAndPassword(username.getText(), psw.getText());
+            User user = repo.findByUsernameAndPassword(username.getText(), psw.getText());
+            //TODO Check user null
+
+            //TODO Do login
         });
 
         view.findViewById(R.id.login_forgot_psw_btn).setOnClickListener(v -> {
-
+            //TODO call forgot psw
         });
+
         view.findViewById(R.id.google_sign_in_btn).setOnClickListener(v -> {
             handleGoogleSignIn();
         });
@@ -65,13 +73,37 @@ public class LoginFragment extends Fragment {
                 .build();
         GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
 
-        // if the user is already signed in the GoogleSignInAccount will be non-null.
-        if (GoogleSignIn.getLastSignedInAccount(getActivity()) != null) {
+//         if the user is already signed in the GoogleSignInAccount will be non-null.
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getActivity());
+        if (account != null) {
             //todo continue to main activity
+            Toast.makeText(getActivity(), "User already logged in as:" + GoogleSignIn.getLastSignedInAccount(getActivity()).getDisplayName(), Toast.LENGTH_LONG).show();
+
+            loginWithGoogle(account);
+
+            return;
         }
 
         Intent signInIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    private void loginWithGoogle(GoogleSignInAccount account) {
+        if (account == null) {
+            throw new RuntimeException("Account is null");
+        }
+
+        new LoginService().loginWithGoogle(account.getEmail(), account.getIdToken(), new ServiceListener<User>() {
+            @Override
+            public void onSuccess(User result) {
+                Toast.makeText(getActivity(), "User:" + result.getName(), Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onError(int code, ServiceError serviceError, String message) {
+                Toast.makeText(getActivity(), serviceError + " [ code " + code + " ] : " + message, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
@@ -80,8 +112,8 @@ public class LoginFragment extends Fragment {
 
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-
-            Toast.makeText(getActivity(), "task:" + task.getResult().getDisplayName() + task.getResult().getIdToken(), Toast.LENGTH_LONG).show();
+            loginWithGoogle(task.getResult());
+            //TODO call backend task.getResult().getIdToken()
         }
     }
 

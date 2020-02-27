@@ -1,0 +1,11 @@
+package com.sara.gnamm.services;
+
+public enum ServiceError {
+
+    GENERIC_ERROR,
+    ERROR_EMAIL_NOT_SHARED,
+    ERROR_USER_NOT_REGISTERED,
+    ERROR_EMAIL_MALFORMED,
+    ERROR_USER_NOT_SOCIAL,
+    ERROR_CREATING_LOGGED_SESSION
+}

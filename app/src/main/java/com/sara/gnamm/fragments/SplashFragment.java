@@ -35,7 +35,6 @@ public class SplashFragment extends Fragment {
                 .setOnClickListener(v -> findNavController(view).navigate(R.id.action_splash_to_login));
     }
 
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
