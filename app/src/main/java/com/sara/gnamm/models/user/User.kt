@@ -16,8 +16,6 @@ data class User(
 
         var name: String,
 
-        var lastName: String,
-
         var sex: Sex,
 
         var birthDate: Date,
@@ -26,7 +24,9 @@ data class User(
 
         var address: String,
 
-        var email: String
+        var email: String,
+
+        var socials: List<SocialInfo> = listOf()
 
         //TODO:
         //Filters (gluten free, vegan, vegetarian)
@@ -44,7 +44,6 @@ data class User(
             return User(
                     id = "$random",
                     name = "Sara $random",
-                    lastName = "Seward $random",
                     sex = Sex.Female,
                     email = "saraseward$random@gmail.com",
                     birthDate = birthDate(),

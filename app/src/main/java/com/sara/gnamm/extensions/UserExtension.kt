@@ -20,5 +20,5 @@ fun User.validate() {
 }
 
 fun User.displayName(): String {
-    return "$name $lastName"
+    return "$name"
 }
